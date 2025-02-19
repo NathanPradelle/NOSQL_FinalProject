@@ -1,0 +1,259 @@
+{
+    "info": {
+        "name": "CrimeLab API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Affaires",
+            "item": [
+                {
+                    "name": "Obtenir toutes les affaires",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/affaires"
+                    }
+                },
+                {
+                    "name": "Obtenir une affaire par ID",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/affaires/:id"
+                    }
+                },
+                {
+                    "name": "Cr\u00e9er une affaire",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/affaires",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"titre\": \"Braquage\", \"lieu\": {\"adresse\": \"10 rue de la Paix\", \"lat\": 48.8566, \"lng\": 2.3522}, \"individus\": [], \"temoignages\": [], \"fadettes\": []}"
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Mettre \u00e0 jour une affaire",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/affaires/:id",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"titre\": \"Nouveau Titre\"}"
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Supprimer une affaire",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/affaires/:id"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Individus",
+            "item": [
+                {
+                    "name": "Obtenir tous les individus",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/individus"
+                    }
+                },
+                {
+                    "name": "Obtenir un individu par ID",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/individus/:id"
+                    }
+                },
+                {
+                    "name": "Cr\u00e9er un individu",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/individus",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"nom\": \"Jean Dupont\", \"age\": 35, \"profession\": \"Inconnu\", \"statut\": \"suspect\", \"telephone\": \"0600000001\"}"
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Mettre \u00e0 jour un individu",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/individus/:id",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"nom\": \"Jean Modifi\\u00e9\"}"
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Supprimer un individu",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/individus/:id"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Fadettes",
+            "item": [
+                {
+                    "name": "Obtenir toutes les fadettes",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/fadettes"
+                    }
+                },
+                {
+                    "name": "Obtenir une fadette par num\u00e9ro",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/fadettes/:numero"
+                    }
+                },
+                {
+                    "name": "Cr\u00e9er une fadette",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/fadettes",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"numero\": \"0600000001\", \"appels_recus\": [], \"appels_emis\": []}"
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Supprimer une fadette",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/fadettes/:numero"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Neo4J Analyses",
+            "item": [
+                {
+                    "name": "Trouver les contacts d\u2019un individu",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/individus/:id/contacts"
+                    }
+                },
+                {
+                    "name": "Voir les individus connect\u00e9s \u00e0 une antenne",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/antenne/:id/individus"
+                    }
+                },
+                {
+                    "name": "Voir les suspects ayant contact\u00e9 un m\u00eame num\u00e9ro",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/suspects/numero/:telephone"
+                    }
+                },
+                {
+                    "name": "Voir les num\u00e9ros pivot appel\u00e9s par plusieurs suspects",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/fadettes/numeros/pivot"
+                    }
+                },
+                {
+                    "name": "Obtenir toutes les affaires d'un individu",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/individus/:id/affaires"
+                    }
+                },
+                {
+                    "name": "Obtenir tous les t\u00e9moignages d'un individu",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/individus/:id/temoignages"
+                    }
+                },
+                {
+                    "name": "Rechercher les affaires dans une zone g\u00e9ographique",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/affaires/geo?lat=:lat&lng=:lng&radius=:radius"
+                    }
+                },
+                {
+                    "name": "Trouver un interm\u00e9diaire entre deux suspects",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/suspects/:id1/:id2/intermediaire"
+                    }
+                },
+                {
+                    "name": "Voir si un suspect \u00e9tait proche d'un crime et a appel\u00e9 apr\u00e8s",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/suspects/:id/proximite/:affaire"
+                    }
+                },
+                {
+                    "name": "Voir les suspects impliqu\u00e9s dans plusieurs affaires",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/suspects/multi-affaires"
+                    }
+                },
+                {
+                    "name": "Voir les appels en cha\u00eene suspects (effet domino)",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/suspects/domino"
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:3000"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  neo4j:
+    image: neo4j
+    container_name: neo4j
+    restart: always
+    environment:
+      - NEO4J_AUTH=neo4j/nosqlproject
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j-data:/data
+
+  api:
+    build: ./api
+    container_name: node-api
+    restart: always
+    depends_on:
+      - mongodb
+      - neo4j
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/usr/src/app
+
+volumes:
+  mongo-data:
+  neo4j-data:
